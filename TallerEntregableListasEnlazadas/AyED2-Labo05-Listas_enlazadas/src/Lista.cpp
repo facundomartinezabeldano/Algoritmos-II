@@ -122,4 +122,6 @@ void Lista::destruirNodos(){
         delete actual;
         actual = siguiente;
     }
+    _prim = nullptr;
+    _ult = nullptr;
 }
