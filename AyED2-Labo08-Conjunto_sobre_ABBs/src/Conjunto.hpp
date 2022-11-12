@@ -87,10 +87,19 @@ void Conjunto<T>::remover(const T& clave) {
     } else {
         int sigV = siguiente(clave);
         int nV = n->valor;
-
+        Nodo* i = _raiz;
+        while (i->valor != sigV){
+            if (i->valor < sigV){
+                i = i->izq;
+            } else {
+                i = i->der;
+            }
+        }
+        i->valor = nV;
+        n->valor = sigV;
+        remover(clave);
     }
     _cardinal --;
-
 }
 
 template <class T>
@@ -103,19 +112,20 @@ const T& Conjunto<T>::siguiente(const T& clave) {
             p = n;
             n = n->izq;
         } else {
-            p = n;
             n = n->der;
         }
     }
     // Ahora tenemos al nodo n con el valor de clave y p el padre de dicho nodo
 
     if (n->der != nullptr){ // Caso 1
-        Nodo* n = n->der;
+        n = n->der;
         while (n->izq != nullptr){
             n = n->izq;
         }
         return n->valor;
     } else if (n == p->izq) { // Caso 2.1
+        return p->valor;
+    } else {
         return p->valor;
     }
 }

@@ -64,16 +64,12 @@ class Conjunto
             Nodo* izq;
             // Puntero a la raíz del subárbol derecho.
             Nodo* der;
-            // Puntero al padre.
-            Nodo* padre;
         };
 
         void BorrarConjunto(Nodo*);
 
         // Puntero a la raíz de nuestro árbol.
-
         Nodo* _raiz;
-
 };
 
 template<class T>
