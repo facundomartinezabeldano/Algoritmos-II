@@ -1,6 +1,0 @@
-/home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug/CMakeFiles/gtest.dir
-/home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug/CMakeFiles/gtest_main.dir
-/home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug/CMakeFiles/correrTests.dir
-/home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug/CMakeFiles/correrValgrind.dir
-/home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug/CMakeFiles/rebuild_cache.dir

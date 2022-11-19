@@ -1,4 +1,4 @@
-# Install script for directory: /home/clinux01/Escritorio/Labo5/AyED2-Labo05-Listas_enlazadas(1)/AyED2-Labo05-Listas_enlazadas
+# Install script for directory: /home/facundo/Documents/Algoritmos-II/TallerEntregableListasEnlazadas/AyED2-Labo05-Listas_enlazadas
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/clinux01/Escritorio/Labo5/AyED2-Labo05-Listas_enlazadas(1)/AyED2-Labo05-Listas_enlazadas/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/facundo/Documents/Algoritmos-II/TallerEntregableListasEnlazadas/AyED2-Labo05-Listas_enlazadas/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

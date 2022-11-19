@@ -1,4 +1,0 @@
-/snap/clion/209/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/209/bin/ninja/linux/ninja -G Ninja -S /home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs -B /home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/facundo/Documents/Algoritmos-II/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug
