@@ -1,11 +1,3 @@
-/Labo-1/AyED2-Labo01/.idea
-/Labo-1/AyED2-Labo01/cmake-build-debug
-/.vscode
 .vscode
-/Labo-3/cmake-build-debug
-/Labo1/cmake-build-debug
-/Labo-4/AyED2-Labo05-Listas_enlazadas(1)/AyED2-Labo05-Listas_enlazadas/cmake-build-debug
-/Labo-4/AyED2-Labo05-Listas_enlazadas(1)/.idea
-/TallerEntregableListasEnlazadas/.idea
-/TallerEntregableListasEnlazadas/AyED2-Labo05-Listas_enlazadas/cmake-build-debug
-/AyED2-Labo08-Conjunto_sobre_ABBs/cmake-build-debug
+/AyED2-Labo08-Conjunto_sobre_ABBs/.idea
+cmake-build-debug

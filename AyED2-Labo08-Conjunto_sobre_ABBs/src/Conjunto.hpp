@@ -3,151 +3,95 @@ template <class T>
 Conjunto<T>::Conjunto() {
     _raiz = nullptr;
     _cardinal = 0;
-    return;
 }
 
 template <class T>
 Conjunto<T>::~Conjunto() {
-    // Completar
+    borrarNodos(_raiz);
 }
 
 template <class T>
 bool Conjunto<T>::pertenece(const T& clave) const {
-    Nodo* n = _raiz;
-
-    if (n == nullptr){
-        return false;
-    }
-
-    while (n != nullptr) {
-        if (n->valor == clave) {
-            return true;
-        } else if (n->valor > clave) {
-            n = n->izq;
-        } else {
-            n = n->der;
-        }
-    }
-    return false;
+    Nodo* n = buscar(clave);
+    return (n != nullptr && n->valor == clave);
 }
 
 template <class T>
 void Conjunto<T>::insertar(const T& clave) {
-    if (pertenece(clave)){
-        return;
-    }
-    Nodo* nuevo = new Nodo(clave);
-    Nodo* p = nullptr;
-    Nodo* a = _raiz;
+    Nodo* p = buscarPadre(clave);
 
-    if (a == nullptr){
-        _raiz = nuevo;
-        _cardinal++;
-        return;
-    }
-
-    while (a != nullptr ){
-        if (a->valor < clave){
-            p = a;
-            a = a->der;
-        } else {
-            p = a;
-            a = a->izq;
-            }
-        }
-
-    if (p->valor < clave){
-        p->der = nuevo;
+    if (p == nullptr){
+        _raiz = new Nodo(clave);
+        _cardinal ++;
+    } else if (p->valor > clave){
+        p->izq = new Nodo(clave);
+        _cardinal ++;
     } else {
-        p->izq = nuevo;
+        p->der = new Nodo(clave);
+        _cardinal ++;
     }
-    _cardinal++;
 }
 
 template <class T>
 void Conjunto<T>::remover(const T& clave) {
-    Nodo* n = _raiz;
-    if (!pertenece(clave)){
-        return;
-    }
-    while (n->valor != clave){
-        if (n->valor > clave){
-            n = n->izq;
-        } else {
-            n = n->der;
-        }
-    }
-
-    if (n->der == nullptr && n->izq == nullptr){
-        delete n;
-    } else if(n->der == nullptr && n->izq != nullptr) {
-        n = n->izq;
-    } else if (n->der != nullptr && n->izq == nullptr) {
-        n = n->der;
+    Nodo* i = buscar(clave);
+    if (i == _raiz){
+        _raiz = nullptr;
+        _cardinal --;
+    } else if (i->der == nullptr && i->izq == nullptr){
+        delete i;
+        _cardinal--;
+    } else if (i->der != nullptr && i->izq == nullptr){
+        intercambiarYborrar(i,i->izq);
+    } else if (i->der == nullptr && i->izq != nullptr){
+        intercambiarYborrar(i,i->der);
     } else {
-        int sigV = siguiente(clave);
-        int nV = n->valor;
-        Nodo* i = _raiz;
-        while (i->valor != sigV){
-            if (i->valor < sigV){
-                i = i->izq;
-            } else {
-                i = i->der;
-            }
-        }
-        i->valor = nV;
-        n->valor = sigV;
-        remover(clave);
+        Nodo* sig = buscar(siguiente(i->valor));
+        i->valor = sig->valor;
+        delete sig;
+        _cardinal--;
     }
-    _cardinal --;
 }
 
 template <class T>
 const T& Conjunto<T>::siguiente(const T& clave) {
-    Nodo* n = _raiz;
     Nodo* p = nullptr;
-
-    while (n->valor != clave){
-        if (n->valor > clave){
-            p = n;
-            n = n->izq;
+    Nodo* i = _raiz;
+    while (i->valor != clave){
+        if (i->valor > clave){
+            p = i;
+            i = i->izq;
         } else {
-            n = n->der;
+            i = i->der;
         }
     }
-    // Ahora tenemos al nodo n con el valor de clave y p el padre de dicho nodo
-
-    if (n->der != nullptr){ // Caso 1
-        n = n->der;
-        while (n->izq != nullptr){
-            n = n->izq;
-        }
-        return n->valor;
-    } else if (n == p->izq) { // Caso 2.1
-        return p->valor;
+    if (i->der != nullptr){
+        Conjunto<T>* subArbolIzq = new Conjunto<T>();
+        subArbolIzq->_raiz = i->der;
+        return subArbolIzq->minimo();
     } else {
         return p->valor;
     }
 }
 
 template <class T>
+//Se asume que el conjunto es NO vacio
 const T& Conjunto<T>::minimo() const {
-    Nodo* n = _raiz;
-    while (n->izq != nullptr){
-        n = n->izq;
+    Nodo* i = _raiz;
+    while (i->izq != nullptr){
+        i = i->izq;
     }
-    return n->valor;
-    assert(false);
+    return i->valor;
 }
 
 template <class T>
+//Se asume que el conjunto es NO vacio
 const T& Conjunto<T>::maximo() const {
-    Nodo* n = _raiz;
-    while (n->der != nullptr){
-        n = n->der;
+    Nodo* i = _raiz;
+    while (i->der != nullptr){
+        i = i->der;
     }
-    return n->valor;
-    assert(false);
+    return i->valor;
 }
 
 template <class T>
@@ -156,13 +100,14 @@ unsigned int Conjunto<T>::cardinal() const {
 }
 
 template <class T>
-void Conjunto<T>::mostrar(std::ostream&) const {
-    assert(false);
-}
-
-template <class T>
 Conjunto<T>::Nodo::Nodo(const T &v) {
     valor = v;
     izq = nullptr;
     der = nullptr;
 }
+
+template <class T>
+void Conjunto<T>::mostrar(std::ostream&) const {
+    assert(false);
+}
+

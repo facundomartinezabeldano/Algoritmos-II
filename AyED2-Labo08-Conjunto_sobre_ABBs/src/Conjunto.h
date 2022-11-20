@@ -45,15 +45,12 @@ class Conjunto
         // Muestra el conjunto.
         void mostrar(std::ostream&) const;
 
-
-
     private:
 
-        unsigned int _cardinal;
         /**
          * Completar con lo que sea necesario...
          **/
-        // Destructor
+
         struct Nodo
         {
             // El constructor, toma el elemento al que representa el nodo.
@@ -65,17 +62,68 @@ class Conjunto
             // Puntero a la raíz del subárbol derecho.
             Nodo* der;
         };
-
-        void BorrarConjunto(Nodo*);
-
+        int _cardinal;
         // Puntero a la raíz de nuestro árbol.
         Nodo* _raiz;
+
+        Nodo* buscar (const T& clave) const {
+            Nodo* i = _raiz;
+            while (i != nullptr){
+                if (i->valor > clave){
+                    i = i->izq;
+                } else if (i->valor < clave){
+                    i = i->der;
+                } else{
+                    return i;
+                }
+            }
+            return nullptr;
+        }
+
+        Nodo* buscarPadre(const T& clave) const {
+            Nodo* i = _raiz;
+            Nodo* p = nullptr;
+            while (i != nullptr){
+                if (i->valor > clave){
+                    p = i;
+                    i = i->izq;
+                } else {
+                    p = i;
+                    i = i->der;
+                }
+            }
+            return p;
+        }
+
+        void intercambiarYborrar(Nodo* a, Nodo* b){
+            //intercambia a con b y borra a
+            b = a;
+            delete a;
+            _cardinal --;
+        }
+
+        void borrarNodos(Nodo* r){
+            if (r != nullptr){
+                if (r->der == nullptr && r->izq == nullptr){
+                    delete r;
+                } else if (r->der != nullptr && r->izq == nullptr){
+                    borrarNodos(r->der);
+                } else if (r->der == nullptr && r->izq != nullptr){
+                    borrarNodos(r->izq);
+                } else {
+                    borrarNodos(r->izq);
+                    borrarNodos(r->der);
+                }
+            }
+            return;
+        }
+
 };
 
 template<class T>
 std::ostream& operator<<(std::ostream& os, const Conjunto<T>& c) {
-	 c.mostrar(os);
-	 return os;
+     c.mostrar(os);
+     return os;
 }
 
 #include "Conjunto.hpp"
